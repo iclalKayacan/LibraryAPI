@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OnlineLibraryAPI.Data;
-using OnlineLibraryAPI.Models;
+using LibraryAPI.Data;
+using LibraryAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace OnlineLibraryAPI.Controllers

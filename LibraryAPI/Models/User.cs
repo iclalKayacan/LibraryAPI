@@ -1,4 +1,4 @@
-﻿namespace OnlineLibraryAPI.Models
+﻿namespace LibraryAPI.Models
 {
     public class User
     {

@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using OnlineLibraryAPI.Models;
+﻿using LibraryAPI.Models;
+using Microsoft.EntityFrameworkCore;
+using LibraryAPI.Models;
 using System.Collections.Generic;
 
-namespace OnlineLibraryAPI.Data
+namespace LibraryAPI.Data
 {
     public class ApplicationDbContext : DbContext
     {

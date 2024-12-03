@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
-namespace OnlineLibraryAPI.Models
+namespace LibraryAPI.Models
 {
     public class Book
     {
