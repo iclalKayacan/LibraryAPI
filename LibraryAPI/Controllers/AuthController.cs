@@ -1,31 +1,36 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using LibraryAPI.Services; 
+using LibraryAPI.Data;     
+using LibraryAPI.Models;   
+using System.Linq;
 
-[ApiController]
-[Route("api/auth")]
-public class AuthController : ControllerBase
+namespace LibraryAPI.Controllers
 {
-    private readonly JwtService _jwtService;
-
-    public AuthController(JwtService jwtService)
+    [ApiController]
+    [Route("api/auth")]
+    public class AuthController : ControllerBase
     {
-        _jwtService = jwtService;
-    }
+        private readonly JwtService _jwtService;
+        private readonly ApplicationDbContext _context;
 
-    [HttpPost("login")]
-    public IActionResult Login([FromBody] LoginRequest request)
-    {
-        if (request.Username == "testuser" && request.Password == "password")
+        public AuthController(JwtService jwtService, ApplicationDbContext context)
         {
-            var token = _jwtService.GenerateToken(request.Username);
-            return Ok(new { Token = token });
+            _jwtService = jwtService;
+            _context = context;
         }
 
-        return Unauthorized();
-    }
-}
+        [HttpPost("login")]
+        public IActionResult Login([FromBody] LoginRequest request)
+        {
+            var user = _context.Users.SingleOrDefault(u => u.Username == request.Username && u.Password == request.Password);
 
-public class LoginRequest
-{
-    public string Username { get; set; }
-    public string Password { get; set; }
+            if (user != null)
+            {
+                var token = _jwtService.GenerateToken(user.Username);
+                return Ok(new { Token = token, Role = user.Role });
+            }
+
+            return Unauthorized();
+        }
+    }
 }

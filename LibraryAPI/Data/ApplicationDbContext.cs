@@ -1,7 +1,5 @@
 ﻿using LibraryAPI.Models;
 using Microsoft.EntityFrameworkCore;
-using LibraryAPI.Models;
-using System.Collections.Generic;
 
 namespace LibraryAPI.Data
 {
@@ -14,5 +12,18 @@ namespace LibraryAPI.Data
 
         public DbSet<Book> Books { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Publisher> Publishers { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+          
+
+            // Diğer özel ilişkiler için yapılandırma eklenebilir
+        }
     }
 }
