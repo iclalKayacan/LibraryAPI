@@ -5,6 +5,7 @@ using LibraryAPI.Data;
 using System.Text;
 using Microsoft.OpenApi.Models;
 using LibraryAPI.Services;
+using LibraryAPI.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -66,7 +67,7 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-// JwtService ekleniyor
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<JwtService>();
 
 var app = builder.Build();
